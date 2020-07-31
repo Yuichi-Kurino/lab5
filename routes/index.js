@@ -2,7 +2,8 @@ var express = require('express');
 var router = express.Router();
 var userModel = require('../models/userModel');
 var orderModel = require('../models/orderModel');
-const token = require('../Auth/token');
+const tokenUtil = require('../Auth/token');
+const bcrypt = require('bcrypt');
 
 router.post('/userSignup', async function(req, res){
 
@@ -13,9 +14,11 @@ router.post('/userSignup', async function(req, res){
 
 router.post('/authenticateUser', async function (req,res) {
     //check our own database
-    const userInfo = await userModel.getUserByEmail(req.body.email);
 
-    if(userInfo.length === 0||req.body.password!==userInfo[0].password){
+    console.log(req.body.email);
+    const userInfo = await userModel.getUserByEmail(req.body.email);
+    console.log(!bcrypt.compareSync(req.body.password, userInfo[0].password));
+    if(userInfo.length === 0||!bcrypt.compareSync(req.body.password, userInfo[0].password)){
         res.json({process:"fail"});
     }
     else{

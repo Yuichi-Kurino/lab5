@@ -17,6 +17,7 @@ async function insertUser(user) {
 
 async function getUserByID(id){
     try {
+
         return await db('users')
             .select('*')
             .where('uid',id);
