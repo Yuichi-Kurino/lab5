@@ -25,11 +25,11 @@ async function insertItem(item) {
 
 }
 
-async function deleteItem(id) {
+async function deleteItem(item) {
     try {
         await db('items')
-            .del('*')
-            .where({id:id});
+            .del(item)
+            .where({pid: item.pid});
         return {process:"success"};
     }catch(err){
         console.error("item delete failed", err);
@@ -40,8 +40,8 @@ async function deleteItem(id) {
 async function changeItem(item) {
     try {
         await db('items')
-            .update('*')
-            .where(item);
+            .update(item)
+            .where({pid: item.pid});
         return {process:"success"};
     }catch(err){
         console.error("item change failed", err);

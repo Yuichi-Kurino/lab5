@@ -40,7 +40,7 @@ router.post('/authenticateUser', async function (req,res) {
 });
 
 router.post('/change', async function (req,res) {
-    const userinfo = await token.validateToken(req.cookies.usertoken);
+    const userinfo = await tokenUtil.validateToken(req.cookies.userToken);
     if(userinfo) {
         const actual = await orderModel.changeItem(req.body);
         res.json(actual);
@@ -50,7 +50,7 @@ router.post('/change', async function (req,res) {
 });
 
 router.post('/delete', async function (req,res) {
-    const userinfo = await token.validateToken(req.cookies.usertoken);
+    const userinfo = await tokenUtil.validateToken(req.cookies.userToken);
     if(userinfo) {
         const actual = await orderModel.deleteItem(req.body);
         res.json(actual);
@@ -69,6 +69,5 @@ router.post('/create_order', async function (req,res) {
         res.json({process:"fail"})
     }
 });
-
 
 module.exports = router;
