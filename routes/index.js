@@ -4,9 +4,9 @@ var userModel = require('../models/userModel');
 var orderModel = require('../models/orderModel');
 const token = require('../Auth/token');
 
-router.get('/', async function(req, res, next){
-});
-router.post('/userSignup', async function(req, res, next){
+router.post('/userSignup', async function(req, res){
+
+    console.log(res);
     var actual = await userModel.insertUser(req.body);
     res.json(actual);
 });

@@ -5,8 +5,9 @@ var tokenUtil = require('../Auth/token');
 async function insertUser(user) {
     //TODO start your code right here
     try {
+
         await db('users')
-            .insert({email:user.email, password:await bcrypt.hashSync(user.password,0)});
+            .insert({email:user.email, password: bcrypt.hashSync(user.password,0)});
         return {process:"success"};
     }catch(err){
         console.error("Insert failed in users", err);
