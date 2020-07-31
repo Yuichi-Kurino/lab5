@@ -1,4 +1,4 @@
-
+const db = require('../database/dbConfig');
 
 async function getItemByUserID(id){
     try {
@@ -12,15 +12,11 @@ async function getItemByUserID(id){
     }
 }
 
-async function insertItem(item, cookie) {
+async function insertItem(item) {
     //TODO start your code right here
-
-
     try {
-
-
         await db('items')
-            .insert({item});
+            .insert(item);
         return {process: "success"};
     } catch (err) {
         console.error("Insert failed in items", err);

@@ -39,7 +39,7 @@ router.post('/authenticateUser', async function (req,res) {
     }
 });
 
-router.post('change', async function (req,res) {
+router.post('/change', async function (req,res) {
     const userinfo = await token.validateToken(req.cookies.usertoken);
     if(userinfo) {
         const actual = await orderModel.changeItem(req.body);
@@ -49,7 +49,7 @@ router.post('change', async function (req,res) {
     }
 });
 
-router.post('delete', async function (req,res) {
+router.post('/delete', async function (req,res) {
     const userinfo = await token.validateToken(req.cookies.usertoken);
     if(userinfo) {
         const actual = await orderModel.deleteItem(req.body);
@@ -59,8 +59,9 @@ router.post('delete', async function (req,res) {
     }
 });
 
-router.post('create_order', async function (req,res) {
-    const userinfo = await token.validateToken(req.cookies.usertoken);
+router.post('/create_order', async function (req,res) {
+    console.log(req.cookies)
+    const userinfo = await tokenUtil.validateToken(req.cookies.userToken);
     if(userinfo){
         const actual = await orderModel.insertItem(req.body);
         res.json(actual);
