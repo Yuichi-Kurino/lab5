@@ -38,7 +38,7 @@ async function getUserByEmail(email){
     }
 }
 
-module.exports={insertUser,getUserByEmail,getUserByID,authenticateUser, insertItem};
+module.exports={insertUser,getUserByEmail,getUserByID};
 
 // async function insertUser(userJSON);
 // async funcion getUserByID(id);
