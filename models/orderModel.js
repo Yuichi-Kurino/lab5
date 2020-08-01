@@ -3,7 +3,7 @@ const db = require('../database/dbConfig');
 async function getItemByUserID(id){
     try {
         return await db('users')
-            .select('*')
+            .select('itemInfo','pid')
             .join('items', {'users.uid': 'items.uid'});
 
     }catch(err){
@@ -51,4 +51,4 @@ async function changeItem(item) {
 
 
 
-module.exports={insertItem, getItemByUserID, deleteItem, changeItem}
+module.exports={insertItem, getItemByUserID, deleteItem, changeItem};

@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
 const db = require('../database/dbConfig');
-var tokenUtil = require('../Auth/token');
+const tokenUtil = require('../Auth/token');
 
 async function insertUser(user) {
     //TODO start your code right here
@@ -33,6 +33,18 @@ async function getUserByEmail(email){
         return await db('users')
             .select('*')
             .where('email',email);
+
+    }catch(err){
+        console.error("getUserByEmail failed in users", err);
+        return {process:"fail"};
+    }
+}
+
+async function getUserByID(id){
+    try {
+        return await db('users')
+            .select('*')
+            .where('id',id);
 
     }catch(err){
         console.error("getUserByEmail failed in users", err);
