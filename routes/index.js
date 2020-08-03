@@ -6,6 +6,11 @@ const tokenUtil = require('../Auth/token');
 const bcrypt = require('bcrypt');
 const db = require('../database/dbConfig');
 
+router.get('/', function(req, res){
+    res.end("end");
+});
+
+
 router.post('/userSignup', async function(req, res){
 
     const actual = await userModel.insertUser(req.body);
