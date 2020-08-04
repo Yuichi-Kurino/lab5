@@ -1,6 +1,5 @@
 
 const mysql = require('mysql');
-require('dotenv').config();
 
 const localSQLConnection = {
   host: process.env.DATABASE_HOST,

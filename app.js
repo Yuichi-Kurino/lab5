@@ -5,7 +5,7 @@ const createError = require('http-errors');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-
+const http = require('http');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 
@@ -42,7 +42,6 @@ app.use(function(err, req, res, next) {
 
 
 const port = 3000;
-
 app.listen(port, () => `Server running on port ${port}`);
 
 
